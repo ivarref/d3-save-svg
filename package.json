@@ -1,0 +1,29 @@
+{
+  "name": "d3-export-svg",
+  "version": "0.0.1",
+  "description": "D3 plugin for exporting SVGs. Based on svg-crowbar by Shan Carter",
+  "keywords": [
+    "d3",
+    "svg",
+    "svg-crowbar"
+  ],
+  "license": "BSD-3-Clause",
+  "main": "build/d3-export-svg.js",
+  "jsnext:main": "index",
+  "homepage": "https://github.com/edeno/d3-export-svg",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/edeno/d3-export-svg"
+  },
+  "scripts": {
+    "pretest": "mkdir -p build && node -e 'process.stdout.write(\"var version = \\\"\" + require(\"./package.json\").version + \"\\\"; export * from \\\"../index\\\"; export {version};\");' > build/bundle.js && rollup -f umd -u d3-export-svg -n d3_foo -o build/d3-export-svg.js -- build/bundle.js",
+    "test": "faucet `find test -name '*-test.js'`",
+    "prepublish": "npm run test && uglifyjs build/d3-export-svg.js -c -m -o build/d3-export-svg.min.js && rm -f build/d3-export-svg.zip && zip -j build/d3-export-svg.zip -- LICENSE README.md build/d3-export-svg.js build/d3-export-svg.min.js"
+  },
+  "devDependencies": {
+    "faucet": "0.0",
+    "rollup": "0.20.5",
+    "tape": "4",
+    "uglify-js": "2"
+  }
+}
