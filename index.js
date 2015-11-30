@@ -1,1 +1,1 @@
-export {default as foo} from "./src/foo";
+export {download} from './src/d3-save-svg';

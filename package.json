@@ -1,5 +1,5 @@
 {
-  "name": "d3-export-svg",
+  "name": "d3-save-svg",
   "version": "0.0.1",
   "description": "D3 plugin for exporting SVGs. Based on svg-crowbar by Shan Carter",
   "keywords": [
@@ -8,17 +8,17 @@
     "svg-crowbar"
   ],
   "license": "BSD-3-Clause",
-  "main": "build/d3-export-svg.js",
+  "main": "build/d3-save-svg.js",
   "jsnext:main": "index",
-  "homepage": "https://github.com/edeno/d3-export-svg",
+  "homepage": "https://github.com/edeno/d3-save-svg",
   "repository": {
     "type": "git",
-    "url": "https://github.com/edeno/d3-export-svg"
+    "url": "https://github.com/edeno/d3-save-svg"
   },
   "scripts": {
-    "pretest": "mkdir -p build && node -e 'process.stdout.write(\"var version = \\\"\" + require(\"./package.json\").version + \"\\\"; export * from \\\"../index\\\"; export {version};\");' > build/bundle.js && rollup -f umd -u d3-export-svg -n d3_foo -o build/d3-export-svg.js -- build/bundle.js",
+    "pretest": "mkdir -p build && node -e 'process.stdout.write(\"var version = \\\"\" + require(\"./package.json\").version + \"\\\"; export * from \\\"../index\\\"; export {version};\");' > build/bundle.js && rollup -f umd -u d3-save-svg -n d3_save_svg -o build/d3-save-svg.js -- build/bundle.js",
     "test": "faucet `find test -name '*-test.js'`",
-    "prepublish": "npm run test && uglifyjs build/d3-export-svg.js -c -m -o build/d3-export-svg.min.js && rm -f build/d3-export-svg.zip && zip -j build/d3-export-svg.zip -- LICENSE README.md build/d3-export-svg.js build/d3-export-svg.min.js"
+    "prepublish": "npm run test && uglifyjs build/d3-save-svg.js -c -m -o build/d3-save-svg.min.js && rm -f build/d3-save-svg.zip && zip -j build/d3-save-svg.zip -- LICENSE README.md build/d3-save-svg.js build/d3-save-svg.min.js"
   },
   "devDependencies": {
     "faucet": "0.0",
