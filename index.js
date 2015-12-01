@@ -1,1 +1,3 @@
-export {download} from './src/d3-save-svg';
+export {
+  save,
+} from './src/d3-save-svg';
