@@ -13,10 +13,20 @@ var xmlsShim = function() {
 };
 
 tape('save() throws an error if element is not an svg element.', function(test) {
-  var document = jsdom.jsdom('<h1>hello</h1><svg></svg>');
-  var h1 = document.querySelector('h1');
-  var window = document.defaultView;
-  test.throws(function() {d3SaveSvg.save(h1);});
+  jsdom.env({
+    html: '<html><body><h1>hello</h1><svg></svg></body></html>',
+    done: function(errs, window) {
+
+      window.URL.createObjectURL = createObjectURLShim;
+      window.URL.revokeObjectURL = revokeObjectURLShim;
+      global.window = window;
+      global.XMLSerializer = xmlsShim;
+      global.Blob = Blob;
+      global.document = window.document;
+      var h1 = window.document.querySelector('h1');
+      test.throws(function() {d3SaveSvg.save(h1);});
+    },
+  });
 
   test.end();
 });
@@ -31,7 +41,7 @@ tape('save() accepts svg elements', function(test) {
       global.window = window;
       global.XMLSerializer = xmlsShim;
       global.Blob = Blob;
-      gloabl.document = window.document;
+      global.document = window.document;
       var svg = window.document.querySelector('svg');
       test.doesNotThrow(function() {d3SaveSvg.save(svg);});
     },
