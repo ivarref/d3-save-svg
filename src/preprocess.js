@@ -19,7 +19,8 @@ export default function (svg) {
 
   setInlineStyles(svg);
 
-  var source = (new XMLSerializer()).serializeToString(svg);
+  var xmls = new XMLSerializer();
+  var source = xmls.serializeToString(svg);
   var doctype = '<?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">';
   var rect = svg.getBoundingClientRect();
   var svgInfo = {

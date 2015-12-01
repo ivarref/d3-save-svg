@@ -5,7 +5,7 @@ export default function (svg) {
   // add empty svg element
   var emptySvg = window.document.createElementNS(prefix.svg, 'svg');
   window.document.body.appendChild(emptySvg);
-  var emptySvgDeclarationComputed = getComputedStyle(emptySvg);
+  var emptySvgDeclarationComputed = window.getComputedStyle(emptySvg);
 
   // hardcode computed css styles inside svg
   var allElements = traverse(svg);
@@ -15,7 +15,7 @@ export default function (svg) {
   }
 
   function explicitlySetStyle(element) {
-    var cSSStyleDeclarationComputed = getComputedStyle(element);
+    var cSSStyleDeclarationComputed = window.getComputedStyle(element);
     var i;
     var len;
     var key;
