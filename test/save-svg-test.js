@@ -1,7 +1,41 @@
 var tape = require('tape');
-var saveSvg = require('../');
+var d3SaveSvg = require('../');
+var jsdom = require('jsdom');
+var xmls = require('xmlserializer');
+var Blob = require('w3c-blob');
 
-// tape('foo() returns the answer to the ultimate question of life, the universe, and everything.', function(test) {
-//   test.equal(saveSvg.foo(), 42);
-//   test.end();
-// });
+var revokeObjectURLShim = function() {};
+
+var createObjectURLShim = function() {};
+
+var xmlsShim = function() {
+  this.serializeToString = xmls.serializeToString;
+};
+
+tape('save() throws an error if element is not an svg element.', function(test) {
+  var document = jsdom.jsdom('<h1>hello</h1><svg></svg>');
+  var h1 = document.querySelector('h1');
+  var window = document.defaultView;
+  test.throws(function() {d3SaveSvg.save(h1);});
+
+  test.end();
+});
+
+tape('save() accepts svg elements', function(test) {
+  jsdom.env({
+    html: '<html><body><h1>hello</h1><svg></svg></body></html>',
+    done: function(errs, window) {
+
+      window.URL.createObjectURL = createObjectURLShim;
+      window.URL.revokeObjectURL = revokeObjectURLShim;
+      global.window = window;
+      global.XMLSerializer = xmlsShim;
+      global.Blob = Blob;
+      gloabl.document = window.document;
+      var svg = window.document.querySelector('svg');
+      test.doesNotThrow(function() {d3SaveSvg.save(svg);});
+    },
+  });
+
+  test.end();
+});
