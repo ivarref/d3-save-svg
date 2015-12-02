@@ -9,3 +9,6 @@
 +  Allows specification of custom file names.
 +  Handles embedded raster images.
 +  Has convenience method for embedding raster images.
+
+### Note
+Most of this has been cobbled together from stackoverflow and issues logged on the nytimes svg-crowbar repo.
