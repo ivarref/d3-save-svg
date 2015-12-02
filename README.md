@@ -5,7 +5,7 @@
 [Project page](http://edeno.github.com/d3-save-svg/)
 
 ### Differences from the bookmarklet
-+  Can use to download specific svg, which can be incorporated into buttons for exporting images. See example on the [project page]((http://edeno.github.com/d3-save-svg/).
++  Can use to download specific svg, which can be incorporated into buttons for exporting images. See example on the [project page](http://edeno.github.com/d3-save-svg/).
 +  Allows specification of custom file names.
 +  Handles embedded raster images.
 +  Has convenience method for embedding raster images.
