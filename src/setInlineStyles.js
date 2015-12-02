@@ -28,11 +28,8 @@ export default function (svg) {
       key = cSSStyleDeclarationComputed[i];
       value = cSSStyleDeclarationComputed.getPropertyValue(key);
       if (value !== emptySvgDeclarationComputed.getPropertyValue(key)) {
-        // Don't set computed style of width and height on images. Makes them disappear.
-        if (
-            !(element.tagName === 'image' && key === 'height') &&
-            !(element.tagName === 'image' && key === 'width')
-           ) {
+        // Don't set computed style of width and height. Makes SVG elmements disappear.
+        if ((key !== 'height') && (key !== 'width')) {
           computedStyleStr += key + ':' + value + ';';
         }
 

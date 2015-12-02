@@ -1,5 +1,6 @@
 import download from './download';
 import preprocess from './preprocess';
+import prefix from './namespaces';
 import {converterEngine, getImageBase64, isDataURL} from './convertRaster';
 
 export function save(svgElement, config) {
@@ -25,7 +26,7 @@ export function embedRasterImages(svg) {
     if (!isDataURL(url)) {
       // convert to base64 image and embed.
       getImageBase64(url, function(err, d) {
-        image.setAttribute('href', 'data:image/png;base64,' + d);
+        image.setAttributeNS(prefix.xlink, 'href', 'data:image/png;base64,' + d);
       });
     }
 
