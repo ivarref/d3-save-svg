@@ -14,6 +14,8 @@ export default function (svg) {
     explicitlySetStyle(allElements[i]);
   }
 
+  emptySvg.parentNode.removeChild(emptySvg);
+
   function explicitlySetStyle(element) {
     var cSSStyleDeclarationComputed = window.getComputedStyle(element);
     var i;
