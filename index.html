@@ -109,6 +109,10 @@
 
   <h3>A Sample SVG</h3>
   <div id="svgs"></div>
+  <input id="dl"
+      name="downloadButton"
+      type="button"
+      value="Download SVG" />
 
   <script src="http://d3js.org/d3.v3.min.js"></script>
   <script src="build/d3-save-svg.js"></script>
@@ -180,6 +184,12 @@
         .attr("y", (height / 6) * 5);
     d3_save_svg.embedRasterImages(svg.node());
 
+    d3.select('#dl').on('click', function() {
+      var config = {
+        filename: 'customFileName',
+      }
+      d3_save_svg.save(d3.select('svg').node(), config);
+    });
 
   </script>
 
