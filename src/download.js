@@ -1,5 +1,5 @@
 export default function (svgInfo, filename) {
-
+  window.URL = (window.URL || window.webkitURL);
   var blob = new Blob(svgInfo.source, {type: 'text\/xml'});
   var url = window.URL.createObjectURL(blob);
   var body = document.body;
