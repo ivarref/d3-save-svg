@@ -29,7 +29,7 @@ export default function (svg) {
       value = cSSStyleDeclarationComputed.getPropertyValue(key);
       if (value !== emptySvgDeclarationComputed.getPropertyValue(key)) {
         // Don't set computed style of width and height. Makes SVG elmements disappear.
-        if ((key !== 'height') || (key !== 'width')) {
+        if ((key !== 'height') && (key !== 'width')) {
           computedStyleStr += key + ':' + value + ';';
         }
 
