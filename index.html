@@ -114,7 +114,7 @@
   <script src="build/d3-save-svg.js"></script>
   <script type="text/javascript">
     var width = 600,
-        height = 300;
+        height = 600;
 
     var svg = d3.select("#svgs").append("svg")
        .attr("class", "first")
@@ -144,31 +144,42 @@
     svg.append("text")
         .attr("class", "internal")
         .attr("x", width / 2)
-        .attr("y", height / 5)
+        .attr("y", height / 6)
         .text("Internal CSS, this text should be pink.");
 
     svg.append("text")
         .attr("class", "imported")
         .attr("x", width / 2)
-        .attr("y", height / 5 * 2)
+        .attr("y", (height / 6) * 2)
         .text("Imported CSS, this text should be pink.");
 
     svg.append("text")
         .attr("class", "linked")
         .attr("x", width / 2)
-        .attr("y", height / 5 * 3)
+        .attr("y", (height / 6) * 3)
         .text("Linked CSS, this text should be pink.");
 
     svg.append("text")
         .attr("class", "dependency")
         .attr("x", width / 2)
-        .attr("y", height / 5 * 4)
+        .attr("y", (height / 6) * 4)
         .text("An HTML dependency, this text should be pink.");
 
-    var config = {
-      filename: 'blah',
-    }
-    d3_save_svg.save(d3.select('svg').node(), config);
+    svg.append("text")
+        .attr("class", "dependency")
+        .attr("x", width / 2)
+        .attr("y", (height / 6) * 5)
+        .text("The embedded raster image below should appear.");
+    svg
+      .append('g')
+      .append('image')
+        .attr('xlink:href', 'assets/test.png')
+        .attr("width", 100)
+        .attr("height", 100)
+        .attr("x", (width / 2)  - 50)
+        .attr("y", (height / 6) * 5);
+    d3_save_svg.embedRasterImages(svg.node());
+
 
   </script>
 

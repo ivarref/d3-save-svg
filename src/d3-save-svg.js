@@ -1,5 +1,6 @@
 import download from './download';
 import preprocess from './preprocess';
+import {converterEngine, getImageBase64, isDataURL} from './convertRaster';
 
 export function save(svgElement, config) {
   if (svgElement.nodeName !== 'svg' || svgElement.nodeType !== 1) {
@@ -12,6 +13,24 @@ export function save(svgElement, config) {
   var filename = config.filename || defaultFileName;
   var svgInfo = preprocess(svgElement);
   download(svgInfo, filename);
+}
+
+export function embedRasterImages(svg) {
+
+  var images = svg.querySelectorAll('image');
+  [].forEach.call(images, function(image) {
+    var url = image.getAttribute('href');
+
+    // Check if it is already a data URL
+    if (!isDataURL(url)) {
+      // convert to base64 image and embed.
+      getImageBase64(url, function(err, d) {
+        image.setAttribute('href', 'data:image/png;base64,' + d);
+      });
+    }
+
+  });
+
 }
 
 function getDefaultFileName(svgInfo) {
