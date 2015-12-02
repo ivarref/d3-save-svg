@@ -10,6 +10,7 @@ export default function (svgInfo, filename) {
   a.setAttribute('href', url);
   a.style.display = 'none';
   a.click();
+  a.parentNode.removeChild(a);
 
   setTimeout(function() {
     window.URL.revokeObjectURL(url);
