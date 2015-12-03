@@ -18,12 +18,14 @@ Most of this has been cobbled together from stackoverflow and issues logged on t
 #### save(svgElement, config)
 Given a SVG element and an optional configuration object, `save` embeds external CSS styling and downloads the file. The filename will be (in order of existence) the svgElement ID, the svgElement class, or the window title. Optionally, you can specify the filename in the config object such that `config.filename` will be the name of the downloaded file.
 
+```javascript
     d3.select('button#export').on('click', function() {
       var config = {
         filename: 'customFileName',
       }
       d3_save_svg.save(d3.select('svg').node(), config);
     });
+```
 
 #### embedRasterImages(imageElement)
 A convenience function for converting a referenced raster image to base64 data via data URI, so that it is embedded in the SVG. This ensures that the downloaded image will contain the raster image. Probably should be updated to just directly convert a referenced link to data URI instead of doing it in two separate steps.
