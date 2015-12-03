@@ -12,3 +12,12 @@
 
 ### Note
 Most of this has been cobbled together from stackoverflow and issues logged on the nytimes svg-crowbar repo.
+
+### API
+
+#### d3_save_svg.save(svgElement, config)
+Given a SVG element and an optional configuration object, `save` embeds external CSS styling and downloads the file. The filename will be (in order of existence) the svgElement ID, the svgElement class, or the window title. Optionally, you can specify the filename in the config object such that `config.filename` will be the name of the downloaded file.
+
+#### d3_save_svg.embedRasterImages(imageElement)
+A convenience function for converting a referenced raster image to base64 data via data URI, so that it is embedded in the SVG. This ensures that the downloaded image will contain the raster image. Probably should be updated to just directly convert a referenced link to data URI instead of doing it in two separate steps.
+
