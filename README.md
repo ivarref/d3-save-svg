@@ -27,8 +27,8 @@ d3.select('button#export').on('click', function() {
 });
 ```
 
-#### embedRasterImages(imageElement)
-A convenience function for converting a referenced raster image to base64 data via data URI, so that it is embedded in the SVG. This ensures that the downloaded image will contain the raster image. Probably should be updated to just directly convert a referenced link to data URI instead of doing it in two separate steps.
+#### embedRasterImages(svgElement)
+A convenience function for converting all referenced raster images in an SVG element to base64 data via data URI, so that it is embedded in the SVG. This ensures that the downloaded image will contain the raster image. Probably should be updated to just directly convert a referenced link to data URI instead of doing it in two separate steps.
 
 ```javascript
 svg
