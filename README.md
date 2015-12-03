@@ -21,3 +21,9 @@ Given a SVG element and an optional configuration object, `save` embeds external
 #### d3_save_svg.embedRasterImages(imageElement)
 A convenience function for converting a referenced raster image to base64 data via data URI, so that it is embedded in the SVG. This ensures that the downloaded image will contain the raster image. Probably should be updated to just directly convert a referenced link to data URI instead of doing it in two separate steps.
 
+### Contributing
+`npm install` to get the development dependencies, test and build.
+
+Testing is via [Tape](https://github.com/substack/tape) and [jsdom](https://github.com/tmpvar/jsdom). Right now the tests are pretty rudimentary. Also `index.html` serves as a good check on whether things are working.
+
+Development is done using the [git-flow](http://nvie.com/posts/a-successful-git-branching-model/) workflow. Please merge changes into the `develop` branch.
