@@ -27,3 +27,5 @@ A convenience function for converting a referenced raster image to base64 data v
 Testing is via [Tape](https://github.com/substack/tape) and [jsdom](https://github.com/tmpvar/jsdom). Right now the tests are pretty rudimentary. Also `index.html` serves as a good check on whether things are working.
 
 Development is done using the [git-flow](http://nvie.com/posts/a-successful-git-branching-model/) workflow. Please merge changes into the `develop` branch.
+
+See [CONTRIBUTING.md](/CONTRIBUTING.md) for additional information.
