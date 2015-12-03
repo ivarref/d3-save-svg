@@ -15,11 +15,33 @@ Most of this has been cobbled together from stackoverflow and issues logged on t
 
 ### API
 
-#### d3_save_svg.save(svgElement, config)
+#### save(svgElement, config)
 Given a SVG element and an optional configuration object, `save` embeds external CSS styling and downloads the file. The filename will be (in order of existence) the svgElement ID, the svgElement class, or the window title. Optionally, you can specify the filename in the config object such that `config.filename` will be the name of the downloaded file.
 
-#### d3_save_svg.embedRasterImages(imageElement)
-A convenience function for converting a referenced raster image to base64 data via data URI, so that it is embedded in the SVG. This ensures that the downloaded image will contain the raster image. Probably should be updated to just directly convert a referenced link to data URI instead of doing it in two separate steps.
+```javascript
+d3.select('button#export').on('click', function() {
+  var config = {
+    filename: 'customFileName',
+  }
+  d3_save_svg.save(d3.select('svg').node(), config);
+});
+```
+
+#### embedRasterImages(svgElement)
+A convenience function for converting all referenced raster images in an SVG element to base64 data via data URI, so that it is embedded in the SVG. This ensures that the downloaded image will contain the raster image. Probably should be updated to just directly convert a referenced link to data URI instead of doing it in two separate steps.
+
+```javascript
+svg
+  .append('g')
+   .append('image')
+      .attr('xlink:href', 'assets/test.png')
+      .attr("width", 100)
+      .attr("height", 100)
+      .attr("x", (width / 2)  - 50)
+      .attr("y", (height / 6) * 5);
+
+d3_save_svg.embedRasterImages(svg.node());
+ ```
 
 ### Contributing
 `npm install` to get the development dependencies, test and build.
