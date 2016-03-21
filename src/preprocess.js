@@ -1,7 +1,7 @@
 import setInlineStyles from './setInlineStyles';
 import prefix from './namespaces';
 
-export default function (svg) {
+export function preprocess(svg) {
   svg.setAttribute('version', '1.1');
 
   // removing attributes so they aren't doubled up

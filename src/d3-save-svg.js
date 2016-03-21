@@ -1,5 +1,5 @@
 import download from './download';
-import preprocess from './preprocess';
+import {preprocess} from './preprocess';
 import prefix from './namespaces';
 import {converterEngine, getImageBase64, isDataURL} from './convertRaster';
 
