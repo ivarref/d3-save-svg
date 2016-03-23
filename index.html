@@ -73,29 +73,6 @@
 
 <body>
 
-  <h1>d3-save-svg</h1>
-  <p>A fork of the nytimes <a href="http://nytimes.github.io/svg-crowbar/">svg-crowbar</a> bookmarklet that extracts SVG nodes and accompanying styles from an HTML document and downloads them as an SVG file—A file which you could open and edit in Adobe Illustrator, for instance. Because SVGs are resolution independent, it’s great for when you want to use web technologies to create documents that are meant to be printed (like, maybe on newsprint). It was created with <a href="http://d3js.org">d3.js</a> in mind, but it should work fine no matter how you choose to generate your SVG.</p>
-
-  <p>Code is on github <a href="https://github.com/edeno/d3-save-svg">here</a>.</p>
-
-  <h3>Differences from the bookmarklet</h3>
-  <p>Can use to download specific svg, which can be incorporated into buttons for exporting images. See example below.</p>
-  <p>Allows specification of custom file names.</p>
-  <p>Handles embedded raster images.</p>
-  <p>Has convenience method for embedding raster images.</p>
-
-  <h3>Notes</h3>
-  <p>Pixels will map to points when opening in Illustrator.</p>
-  <p>Dimensions of the document will be the same as the dimensions of your SVG element.</p>
-  <p>All colors are RGB, which is not ideal for print documents, but CMYK is not supported in SVG 1.1.</p>
-
-  <h3>Gotchas</h3>
-  <p>It only works in Chrome.</p>
-  <p>Currently the https version of the script is being served from raw.github.com, which might break in the future. If the script stops running on https pages, check back here—you might have to re-install the bookmarklet at that time.</p>
-  <p>Descendent "&gt" CSS selectors will crash Adobe Illustrator, therefore those styles are stripped out. Be warned.</p>
-  <p>Adobe Illustrator also chokes on fonts that it doesn’t recognize. Font-family assigments like “sans-serif” (or if you're using webfonts like “nyt-franklin”) will cause Illustrator to give this error when opening the file: “The operation cannot complete because of an unknown error. [CANT]”. This is fixed in Illustrator version 17.1. Other SVG viewers are pretty okay with them though.</p>
-  <p>Some styles won’t propogate down if they depend on markup outside of the svg element. For instance, if you use CSS that targets an SVG path element by an id on the div surrounding the SVG ("#map svg path") then those styles won’t show up in the resulting file. </p>
-
   <h3>A Sample SVG</h3>
   <div id="svgs"></div>
   <input id="dl"
@@ -104,7 +81,7 @@
       value="Download SVG" />
 
   <script src="http://d3js.org/d3.v3.min.js"></script>
-  <script src="assets/d3-save-svg.min.js"></script>
+  <script src="build/d3-save-svg.min.js"></script>
   <script type="text/javascript">
     var width = 600,
         height = 600;
@@ -171,15 +148,13 @@
         .attr("height", 100)
         .attr("x", (width / 2)  - 50)
         .attr("y", (height / 6) * 5);
+
+    var svgElement = d3.select('svg').node();
+    var svgInfo = d3_save_svg.preprocess(svgElement, {});
+    svgInfo = d3_save_svg.preprocess(svgElement, {});
+
+    d3.select('svg').html(svgInfo.source[0])
     d3_save_svg.embedRasterImages(svg.node());
-
-    d3.select('#dl').on('click', function() {
-      var config = {
-        filename: 'customFileName',
-      }
-      d3_save_svg.save(d3.select('svg').node(), config);
-    });
-
   </script>
 
 </body>
